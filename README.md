@@ -271,7 +271,7 @@ Basically, it introduces re-entrancy on ERC20 tokens.
 
 To drain the pool, craft an exploit contract which will: - Add liquidity on both sides, `add_liquidity()` - Remove liquidity from the pool `remove_liquidity()` - Implements the ERC223 `tokenReceived` which will call the previously defined `remove_liquidity()` till the pool is empty.
 
-The exploit contract source code can be found here: <insecure_dex_exploit>
+The exploit contract source code can be found [here](https://github.com/zmalatrax/starknet_security/blob/main/insecure_dex_exploit.cairo).
 
 I tried writing an exploit contract in Cairo0, based on the challenge source code. I haven't found any proper syntax docs on cairo 0, not sure how loops are handled.
 
@@ -306,7 +306,7 @@ The easiest way to solve this challenge is by deploying a contract which impleme
 
 Only one game can be done per block, a block is mined every 3 minutes on Sepolia. Once we successfully called our exploit contract 6 times we can verify and mint the NFT.
 
-The exploit contract source code can be found here: <coinflip_exploit>
+The exploit contract source code can be found [here](https://github.com/zmalatrax/starknet_security/blob/main/coinflip/src/coinflip_exploit.cairo).
 
 1. Deploy the challenge:
 
@@ -379,7 +379,7 @@ We must claim ownership of the deployed challenge.
 To do so, we must call `changeOwner(ref self: ContractState, _owner: ContractAddress)` where the `tx.origin` account address is different from the caller address.
 Deploying and calling a contract that will call `changeOwner` will achieve the wanted result.
 
-The exploit contract source code can be found here: <telephone_exploit>
+The exploit contract source code can be found [here](https://github.com/zmalatrax/starknet_security/blob/main/telephone/src/telephone_exploit.cairo).
 
 1. Deploy the challenge:
 
@@ -493,7 +493,7 @@ There is no restriction on number of calls to these functions, one can make call
 The good samaritan has $1_000_000 TKN, it requires 100_000 calls to `request_donation`.
 Either make a loop that breaks on the the 100_001-th iteration, or a while loop that breaks when `request_donation` returns `false`.
 
-The exploit contract source code can be found here: <good_samaritan_exploit>
+The exploit contract source code can be found [here](https://github.com/zmalatrax/starknet_security/blob/main/good_samaritan/src/good_samaritan_exploit.cairo).
 
 1. Deploy the challenge:
 
