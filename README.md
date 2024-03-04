@@ -6,20 +6,20 @@ This repo contains my write-ups for the different challenges available at https:
 
 | Challenge Number | Challenge Name | Solved | Solved on-chain (SN_SEPOLIA) | Origin                   |
 | ---------------- | -------------- | ------ | ---------------------------- | ------------------------ |
-| 01               | DEPLOY         | [x]    | [x]                          | Capture The Ether (2022) |
-| 02               | CALL ME        | [x]    | [x]                          | Capture The Ether (2022) |
-| 03               | NICKNAME       | [x]    | [x]                          | Capture The Ether (2022) |
-| 04               | GUESS          | [x]    | [x]                          | Capture The Ether (2022) |
-| 05               | SECRET         | [x]    | []                           | Capture The Ether (2022) |
-| 06               | RANDOM         | [x]    | [x]                          | Capture The Ether (2022) |
-| 07               | VTOKEN         | [x]    | []                           | Secureum A-Maze X (2022) |
-| 08               | INSECURE DEX   | [x]    | []                           | Secureum A-Maze X (2022) |
-| 09               | FAL1OUT        | [x]    | [x]                          | Ethernaut (2022)         |
-| 10               | COINFLIP       | [x]    | [x]                          | Ethernaut (2022)         |
-| 11               | TELEPHONE      | [x]    | [x]                          | Ethernaut (2022)         |
-| 12               | VAULT          | [x]    | [x]                          | Ethernaut (2022)         |
-| 13               | NAUGHTY COIN   | [x]    | [x]                          | Ethernaut (2022)         |
-| 14               | GOOD SAMARITAN | [x]    | []                           | Ethernaut (2022)         |
+| 01               | DEPLOY         | - [x]  | - [x]                        | Capture The Ether (2022) |
+| 02               | CALL ME        | - [x]  | - [x]                        | Capture The Ether (2022) |
+| 03               | NICKNAME       | - [x]  | - [x]                        | Capture The Ether (2022) |
+| 04               | GUESS          | - [x]  | - [x]                        | Capture The Ether (2022) |
+| 05               | SECRET         | - [x]  | - [ ]                        | Capture The Ether (2022) |
+| 06               | RANDOM         | - [x]  | - [x]                        | Capture The Ether (2022) |
+| 07               | VTOKEN         | - [x]  | - [ ]                        | Secureum A-Maze X (2022) |
+| 08               | INSECURE DEX   | - [x]  | - [ ]                        | Secureum A-Maze X (2022) |
+| 09               | FAL1OUT        | - [x]  | - [x]                        | Ethernaut (2022)         |
+| 10               | COINFLIP       | - [x]  | - [x]                        | Ethernaut (2022)         |
+| 11               | TELEPHONE      | - [x]  | - [x]                        | Ethernaut (2022)         |
+| 12               | VAULT          | - [x]  | - [x]                        | Ethernaut (2022)         |
+| 13               | NAUGHTY COIN   | - [x]  | - [x]                        | Ethernaut (2022)         |
+| 14               | GOOD SAMARITAN | - [x]  | - [ ]                        | Ethernaut (2022)         |
 
 ## Set up
 
