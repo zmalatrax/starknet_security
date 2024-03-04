@@ -160,7 +160,7 @@ Challenge address: `0x003f9a5fe97db08f27877dc2d363cd27ebd3f6380e0c3a6823162202b0
 
 ### SECRET
 
-/!\ Currently not working on Sepolia /!\
+:warning: Currently not working on Sepolia :warning:
 _A class hash is stored to deploy the challenge, however for this challenge (5, here), it is set to the challenge factory, thus it cannot be deployed._
 
 _Get the challenge class hash:_
@@ -219,7 +219,7 @@ Challenge address: `0x072d89c03662a4df6602c5c066593c0f11d319ac32fd6d9cee33b54fe8
 
 ### VTOKEN
 
-/!\ Currently not working on Sepolia /!\
+:warning: Currently not working on Sepolia :warning:
 _The challenge deploys a custom ERC20 token. The provided [class hash is hardcoded](https://github.com/devnet0x/Starknet-Security-Challenges-Factory/blob/c1f9d6db576aacf28c403a2b1b44f349e4eaf70c/src/assets/challenge7.cairo#L46-L48), but it doesn't exist on Sepolia (surely unchanged from the goerli migration) thus the challenge cannot be deployed._
 
 ```cairo
@@ -261,7 +261,7 @@ It can be done with a multicall:
 
 ### INSECURE DEX
 
-/!\ Currently not working on Sepolia /!\
+:warning: Currently not working on Sepolia :warning:
 _The challenge is still in Cairo 0 and has not been migrated to Cairo 2, plus it has some hardcoded class hashes which haven't been updated_
 
 This challenge is a DEX constituting a pool with an initial liquidity of 10 $ISEC and 10 $SET. With 1 $ISEC and 1 $SET we must drain the pool.
@@ -484,7 +484,7 @@ Challenge address: 0x39303bb3e66588143f88beda1bcf9a4eb56a77829820ed4d55aec83ab12
 
 ### GOOD SAMARITAN
 
-/!\ Currently not working on Sepolia /!\
+:warning: Currently not working on Sepolia :warning:
 _The challenge deploys a custom ERC20 token. The provided class hashes are hardcoded ([1](https://github.com/devnet0x/Starknet-Security-Challenges-Factory/blob/c1f9d6db576aacf28c403a2b1b44f349e4eaf70c/src/assets/challenge14.cairo#L41-L43), [2](https://github.com/devnet0x/Starknet-Security-Challenges-Factory/blob/c1f9d6db576aacf28c403a2b1b44f349e4eaf70c/src/assets/challenge14.cairo#L50-L52)), but it doesn't exist on Sepolia (surely unchanged from the goerli migration) thus the challenge cannot be deployed._
 
 The challenge contract allows anyone to call `request_donation(self: @ContractState)` which calls `donate10(self: @ContractState, dest_: ContractAddress)`, which transfers 10e18 tokens from a wallet contract if there is enough balance. If the balance is less than 10e18, the remaining balance is sent.
