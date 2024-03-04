@@ -4,22 +4,22 @@ This repo contains my write-ups for the different challenges available at https:
 
 ## Recap
 
-| Challenge Number | Challenge Name | Solved | Solved on-chain (SN_SEPOLIA) | Origin                   |
-| ---------------- | -------------- | ------ | ---------------------------- | ------------------------ |
-| 01               | DEPLOY         | &#9745;  | &#9745;                        | Capture The Ether (2022) |
-| 02               | CALL ME        | &#9745;  | &#9745;                        | Capture The Ether (2022) |
-| 03               | NICKNAME       | &#9745;  | &#9745;                        | Capture The Ether (2022) |
-| 04               | GUESS          | &#9745;  | &#9745;                        | Capture The Ether (2022) |
-| 05               | SECRET         | &#9745;  | &#9744;                        | Capture The Ether (2022) |
-| 06               | RANDOM         | &#9745;  | &#9745;                        | Capture The Ether (2022) |
-| 07               | VTOKEN         | &#9745;  | &#9744;                        | Secureum A-Maze X (2022) |
-| 08               | INSECURE DEX   | &#9745;  | &#9744;                        | Secureum A-Maze X (2022) |
-| 09               | FAL1OUT        | &#9745;  | &#9745;                        | Ethernaut (2022)         |
-| 10               | COINFLIP       | &#9745;  | &#9745;                        | Ethernaut (2022)         |
-| 11               | TELEPHONE      | &#9745;  | &#9745;                        | Ethernaut (2022)         |
-| 12               | VAULT          | &#9745;  | &#9745;                        | Ethernaut (2022)         |
-| 13               | NAUGHTY COIN   | &#9745;  | &#9745;                        | Ethernaut (2022)         |
-| 14               | GOOD SAMARITAN | &#9745;  | &#9744;                        | Ethernaut (2022)         |
+| Challenge Number | Challenge Name | Solved  | Solved on-chain (SN_SEPOLIA) | Origin                   |
+| ---------------- | -------------- | ------- | ---------------------------- | ------------------------ |
+| 01               | DEPLOY         | &#9745; | &#9745;                      | Capture The Ether (2022) |
+| 02               | CALL ME        | &#9745; | &#9745;                      | Capture The Ether (2022) |
+| 03               | NICKNAME       | &#9745; | &#9745;                      | Capture The Ether (2022) |
+| 04               | GUESS          | &#9745; | &#9745;                      | Capture The Ether (2022) |
+| 05               | SECRET         | &#9745; | &#9744;                      | Capture The Ether (2022) |
+| 06               | RANDOM         | &#9745; | &#9745;                      | Capture The Ether (2022) |
+| 07               | VTOKEN         | &#9745; | &#9744;                      | Secureum A-Maze X (2022) |
+| 08               | INSECURE DEX   | &#9745; | &#9744;                      | Secureum A-Maze X (2022) |
+| 09               | FAL1OUT        | &#9745; | &#9745;                      | Ethernaut (2022)         |
+| 10               | COINFLIP       | &#9745; | &#9745;                      | Ethernaut (2022)         |
+| 11               | TELEPHONE      | &#9745; | &#9745;                      | Ethernaut (2022)         |
+| 12               | VAULT          | &#9745; | &#9745;                      | Ethernaut (2022)         |
+| 13               | NAUGHTY COIN   | &#9745; | &#9745;                      | Ethernaut (2022)         |
+| 14               | GOOD SAMARITAN | &#9745; | &#9744;                      | Ethernaut (2022)         |
 
 ## Set up
 
@@ -116,7 +116,8 @@ Following the steps from [boilerplate](#boilerplate-to-deploy-and-verify-challen
 ### CALL ME
 
 1. Deploy the challenge:
-   Challenge address: `0x02e7e4bd84465b46525b05ba9709dc85f05bab7be04030fd3d5f70447594c097`
+
+Challenge address: `0x02e7e4bd84465b46525b05ba9709dc85f05bab7be04030fd3d5f70447594c097`
 
 2. Call the `call_me()` function:
 
@@ -146,7 +147,8 @@ starkli invoke 0x05141d769ce5dffd00a2cbd210c41a443360d68fd19a050c8cba22224d78691
 We must guess a previously set number. Reading the constructor's source code is enough to find that number, 42. Or we could query the storage variable `answer` to get its value, as no storage is not publicly readable.
 
 1. Deploy the challenge:
-   Challenge address: `0x003f9a5fe97db08f27877dc2d363cd27ebd3f6380e0c3a6823162202b0f72b84`
+
+Challenge address: `0x003f9a5fe97db08f27877dc2d363cd27ebd3f6380e0c3a6823162202b0f72b84`
 
 2. Guess the right number (`42`):
 
@@ -189,7 +191,8 @@ Storage variables are publicly readable, we just need to read the storage and we
 _NOTE: randomness based on public variables, such as blocks are not considered secured..._
 
 1. Deploy the challenge:
-   Challenge address: `0x072d89c03662a4df6602c5c066593c0f11d319ac32fd6d9cee33b54fe83d9352`
+
+Challenge address: `0x072d89c03662a4df6602c5c066593c0f11d319ac32fd6d9cee33b54fe83d9352`
 
 2. Query the storage:
 
@@ -232,7 +235,8 @@ starkli call 0x5141d769ce5dffd00a2cbd210c41a443360d68fd19a050c8cba22224d786918 $
 The `approve( ref self: ContractState, owner: ContractAddress, spender: ContractAddress, amount: u256)` lacks access-control, anyone can approve token spending on behalf of anybody.
 
 1. Deploy the challenge:
-   Challenge address: <challenge_addr>
+
+Challenge address: <challenge_addr>
 
 2. Get the vtoken address (through explorer or starkli): <vtoken_addr>
 
@@ -279,7 +283,8 @@ We must claim ownership of the deployed challenge.
 The constructor is actually an external function, it misses the `#[constructor]` attribute, meaning that anyone can call it, multiple times.
 
 1. Deploy the challenge:
-   Challenge address: 0x1098a949b19eb18fefac9e2bfc632666b2a9f852816680ff441ba30dae41cde
+
+Challenge address: 0x1098a949b19eb18fefac9e2bfc632666b2a9f852816680ff441ba30dae41cde
 
 2. Call the `constructor(ref self: ContractState, amount: u256)` function:
    An amount of 0 should be passed, as a transfer of the funds are performed when calling `isComplete`, unless you wanna fund it beforehand...
@@ -304,7 +309,8 @@ Only one game can be done per block, a block is mined every 3 minutes on Sepolia
 The exploit contract source code can be found here: <coinflip_exploit>
 
 1. Deploy the challenge:
-   Challenge address: 0x19b7dbc911eda575e4d9708445fcda13365df352cd361be185dacbb63893fc2
+
+Challenge address: 0x19b7dbc911eda575e4d9708445fcda13365df352cd361be185dacbb63893fc2
 
 2. Craft the exploit contract:
 
@@ -376,7 +382,8 @@ Deploying and calling a contract that will call `changeOwner` will achieve the w
 The exploit contract source code can be found here: <telephone_exploit>
 
 1. Deploy the challenge:
-   Challenge address: 0x5bdf71ca6ce8b50be3e7a51b3c6cd9d4e3f0605eacaef0fa7a99ef334868875
+
+Challenge address: 0x5bdf71ca6ce8b50be3e7a51b3c6cd9d4e3f0605eacaef0fa7a99ef334868875
 
 2. Craft the exploit contract:
 
@@ -444,7 +451,8 @@ We need to unlock a vault 'protected' by a password, which is a storage variable
 Read the storage variable and call `unlock(ref self: TContractState, _password: felt252)` with the read value.
 
 1. Deploy the challenge:
-   Challenge address: 0x1212bfd3b7514a51733f4f3d78953cf46bbba1d4cdb12ef2563054042ac20ae
+
+Challenge address: 0x1212bfd3b7514a51733f4f3d78953cf46bbba1d4cdb12ef2563054042ac20ae
 
 2. Read the `password` variable: `0x057190702af68416bf863abc9769e11c2c189e348296ce4dd6b07461fe33a5d2`
 
@@ -462,7 +470,8 @@ We have 100 $NTK which are supposed to be locked for 10 years (i.e non-transferr
 The timelock can be bypassed from using `approve` and `transfer_from` functions on ourself, which lacks timelock checks.
 
 1. Deploy the challenge:
-   Challenge address: 0x39303bb3e66588143f88beda1bcf9a4eb56a77829820ed4d55aec83ab12c99
+
+Challenge address: 0x39303bb3e66588143f88beda1bcf9a4eb56a77829820ed4d55aec83ab12c99
 
 2. Multicall approve and transfer from the deployer address (`0x0558d69359aC03Ca4B900bE7e686220D09e82A83010757071e62a088aE86122b`) to another address (`0x0575754557C4256Bb19144942b8F7377E212774cDFdEf9BF5C3D0416FCC12E26`):
 
@@ -487,7 +496,8 @@ Either make a loop that breaks on the the 100_001-th iteration, or a while loop 
 The exploit contract source code can be found here: <good_samaritan_exploit>
 
 1. Deploy the challenge:
-   Challenge address: <challenge_addr>
+
+Challenge address: <challenge_addr>
 
 2. Craft the exploit contract:
 
