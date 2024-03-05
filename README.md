@@ -1,6 +1,6 @@
 # StarkNet Security Challenges
 
-This repo contains my write-ups for the different challenges available at https://starknet-security-challenges.app.
+This repo contains my write-up for the different challenges available at https://starknet-security-challenges.app.
 
 ## Recap
 
