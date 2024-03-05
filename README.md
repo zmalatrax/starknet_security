@@ -6,20 +6,20 @@ This repo contains my write-ups for the different challenges available at https:
 
 | Challenge Number | Challenge Name | Solved  | Solved on-chain (SN_SEPOLIA) | Origin                   |
 | ---------------- | -------------- | ------- | ---------------------------- | ------------------------ |
-| 01               | DEPLOY         | &#9745; | &#9745;                      | Capture The Ether (2022) |
-| 02               | CALL ME        | &#9745; | &#9745;                      | Capture The Ether (2022) |
-| 03               | NICKNAME       | &#9745; | &#9745;                      | Capture The Ether (2022) |
-| 04               | GUESS          | &#9745; | &#9745;                      | Capture The Ether (2022) |
-| 05               | SECRET         | &#9745; | &#9744;                      | Capture The Ether (2022) |
-| 06               | RANDOM         | &#9745; | &#9745;                      | Capture The Ether (2022) |
-| 07               | VTOKEN         | &#9745; | &#9744;                      | Secureum A-Maze X (2022) |
-| 08               | INSECURE DEX   | &#9745; | &#9744;                      | Secureum A-Maze X (2022) |
-| 09               | FAL1OUT        | &#9745; | &#9745;                      | Ethernaut (2022)         |
-| 10               | COINFLIP       | &#9745; | &#9745;                      | Ethernaut (2022)         |
-| 11               | TELEPHONE      | &#9745; | &#9745;                      | Ethernaut (2022)         |
-| 12               | VAULT          | &#9745; | &#9745;                      | Ethernaut (2022)         |
-| 13               | NAUGHTY COIN   | &#9745; | &#9745;                      | Ethernaut (2022)         |
-| 14               | GOOD SAMARITAN | &#9745; | &#9744;                      | Ethernaut (2022)         |
+| 01               | [DEPLOY](#deploy)         | &#9745; | &#9745;                      | Capture The Ether (2022) |
+| 02               | [CALL ME](#call-me)        | &#9745; | &#9745;                      | Capture The Ether (2022) |
+| 03               | [NICKNAME](#nickname)       | &#9745; | &#9745;                      | Capture The Ether (2022) |
+| 04               | [GUESS](#guess)          | &#9745; | &#9745;                      | Capture The Ether (2022) |
+| 05               | [SECRET](#secret)         | &#9745; | &#9744;                      | Capture The Ether (2022) |
+| 06               | [RANDOM](#random)         | &#9745; | &#9745;                      | Capture The Ether (2022) |
+| 07               | [VTOKEN](#vtoken)         | &#9745; | &#9744;                      | Secureum A-Maze X (2022) |
+| 08               | [INSECURE DEX](#insecure-dex)   | &#9745; | &#9744;                      | Secureum A-Maze X (2022) |
+| 09               | [FAL1OUT](#fal1out)        | &#9745; | &#9745;                      | Ethernaut (2022)         |
+| 10               | [COINFLIP](#coinflip)       | &#9745; | &#9745;                      | Ethernaut (2022)         |
+| 11               | [TELEPHONE](#telephone)      | &#9745; | &#9745;                      | Ethernaut (2022)         |
+| 12               | [VAULT](#vault)          | &#9745; | &#9745;                      | Ethernaut (2022)         |
+| 13               | [NAUGHTY COIN](#naughty-coin)   | &#9745; | &#9745;                      | Ethernaut (2022)         |
+| 14               | [GOOD SAMARITAN](#good-samaritan) | &#9745; | &#9744;                      | Ethernaut (2022)         |
 
 ## Set up
 
@@ -109,6 +109,7 @@ starkli invoke 0x05141d769ce5dffd00a2cbd210c41a443360d68fd19a050c8cba22224d78691
 ```
 
 ### DEPLOY
+_Back to [recap](#recap)_
 
 Deploying the challenge solves the challenge.
 Following the steps from [boilerplate](#boilerplate-to-deploy-and-verify-challenges) is enough.
@@ -128,6 +129,7 @@ Challenge address: `0x02e7e4bd84465b46525b05ba9709dc85f05bab7be04030fd3d5f704475
 3. Verify the solution and mint the NFT
 
 ### NICKNAME
+_Back to [recap](#recap)_
 
 We interact with the main contract to set a nickname, no need to deploy a challenge contract here.
 Challenge address: `0x05141d769ce5dffd00a2cbd210c41a443360d68fd19a050c8cba22224d786918`
@@ -143,6 +145,7 @@ starkli invoke 0x05141d769ce5dffd00a2cbd210c41a443360d68fd19a050c8cba22224d78691
 3. Check on the [leaderboard](https://starknet-security-challenges.app/leaderboard) that your nickname has been set.
 
 ### GUESS
+_Back to [recap](#recap)_
 
 We must guess a previously set number. Reading the constructor's source code is enough to find that number, 42. Or we could query the storage variable `answer` to get its value, as no storage is not publicly readable.
 
@@ -159,6 +162,7 @@ Challenge address: `0x003f9a5fe97db08f27877dc2d363cd27ebd3f6380e0c3a6823162202b0
 3. Verify the solution and mint the NFT
 
 ### SECRET
+_Back to [recap](#recap)_
 
 :warning: Currently not working on Sepolia :warning:
 
@@ -186,6 +190,7 @@ The guessed number is **2023**.
 4. Verify the solution and mint the NFT
 
 ### RANDOM
+_Back to [recap](#recap)_
 
 A hash is computed from the block number and timestamp from which the challenge is deployed from, and we must guess it.
 Storage variables are publicly readable, we just need to read the storage and we're done.
@@ -219,6 +224,7 @@ Challenge address: `0x072d89c03662a4df6602c5c066593c0f11d319ac32fd6d9cee33b54fe8
 4. Verify the solution and mint the NFT
 
 ### VTOKEN
+_Back to [recap](#recap)_
 
 :warning: Currently not working on Sepolia :warning:
 
@@ -262,6 +268,7 @@ It can be done with a multicall:
 5. Verify the solution and mint the NFT
 
 ### INSECURE DEX
+_Back to [recap](#recap)_
 
 :warning: Currently not working on Sepolia :warning:
 
@@ -281,6 +288,7 @@ I tried writing an exploit contract in Cairo0, based on the challenge source cod
 Finishing the cairo 0 to cairo 2 migration of the challenge and then resolving it should be a better option...
 
 ### FAL1OUT
+_Back to [recap](#recap)_
 
 We must claim ownership of the deployed challenge.
 The constructor is actually an external function, it misses the `#[constructor]` attribute, meaning that anyone can call it, multiple times.
@@ -299,6 +307,7 @@ Challenge address: 0x1098a949b19eb18fefac9e2bfc632666b2a9f852816680ff441ba30dae4
 3. Verify the solution and mint the NFT
 
 ### COINFLIP
+_Back to [recap](#recap)_
 
 We must win a coin flip game 6 consecutive times.
 The correct answer being HEAD or TAIL is computed in a known private function, based on the transaction hash of the current transaction.
@@ -377,6 +386,7 @@ Contract deployed:
 ```
 
 ### TELEPHONE
+_Back to [recap](#recap)_
 
 We must claim ownership of the deployed challenge.
 To do so, we must call `changeOwner(ref self: ContractState, _owner: ContractAddress)` where the `tx.origin` account address is different from the caller address.
@@ -449,6 +459,7 @@ Contract deployed:
 ```
 
 ### VAULT
+_Back to [recap](#recap)_
 
 We need to unlock a vault 'protected' by a password, which is a storage variable.
 Read the storage variable and call `unlock(ref self: TContractState, _password: felt252)` with the read value.
@@ -468,6 +479,7 @@ Challenge address: 0x1212bfd3b7514a51733f4f3d78953cf46bbba1d4cdb12ef2563054042ac
 4. Verify the solution and mint the NFT
 
 ### NAUGHTY COIN
+_Back to [recap](#recap)_
 
 We have 100 $NTK which are supposed to be locked for 10 years (i.e non-transferrable).
 The timelock can be bypassed from using `approve` and `transfer_from` functions on ourself, which lacks timelock checks.
@@ -486,6 +498,7 @@ Challenge address: 0x39303bb3e66588143f88beda1bcf9a4eb56a77829820ed4d55aec83ab12
 3. Verify the solution and mint the NFT
 
 ### GOOD SAMARITAN
+_Back to [recap](#recap)_
 
 :warning: Currently not working on Sepolia :warning:
 
