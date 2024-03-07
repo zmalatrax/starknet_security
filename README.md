@@ -164,16 +164,6 @@ Challenge address: `0x003f9a5fe97db08f27877dc2d363cd27ebd3f6380e0c3a6823162202b0
 ### SECRET
 _Back to [recap](#recap)_
 
-:warning: Currently not working on Sepolia :warning:
-
-_A class hash is stored to deploy the challenge, however for this challenge (5, here), it is set to the challenge factory, thus it cannot be deployed._
-
-_Get the challenge class hash:_
-
-```bash
-starkli call 0x5141d769ce5dffd00a2cbd210c41a443360d68fd19a050c8cba22224d786918 $(starkli selector get_challenge_class_hash) <challenge_number>
-```
-
 We must guess the number which yields the provided pedersen hash: `0x23c16a2a9adbcd4988f04bbc6bc6d90275cfc5a03fbe28a6a9a3070429acb96`
 We know that the number is in the range [1..5000].
 The `hash_result` has been constructed as such: `core::pedersen::pedersen(1000, n);`
@@ -181,10 +171,23 @@ Thus, we can write a cairo program which computes the pedersen hash for n in [1.
 
 The guessed number is **2023**.
 
-3. Guess the right number (`0x046c2df8c2dde4795e032036fefb4d3962020d98f1fd36a1c2a60e656f5b7a9e`):
+Cairo script to guess the number [here](https://github.com/zmalatrax/starknet_security/blob/main/secret/src/lib.cairo)
+
+1. Deploy the challenge:
+
+Challenge address: `0x4937083c68a02c79e98d907f56c59a2bbc455406381b6029cfd5f5fd07ca2bb`
+
+2. Run the script to find the right number:
 
    ```bash
-   starkli invoke 0x003f9a5fe97db08f27877dc2d363cd27ebd3f6380e0c3a6823162202b0f72b84 $(starkli selector guess) 2023
+   cd secret
+   scarb cairo-run
+   ```
+
+3. Deposit eth and guess the right number (`0x046c2df8c2dde4795e032036fefb4d3962020d98f1fd36a1c2a60e656f5b7a9e`):
+
+   ```bash
+   starkli invoke eth transfer 0x4937083c68a02c79e98d907f56c59a2bbc455406381b6029cfd5f5fd07ca2bb u256:10000000000000000 / 0x4937083c68a02c79e98d907f56c59a2bbc455406381b6029cfd5f5fd07ca2bb $(starkli selector guess) 2023 --watch
    ```
 
 4. Verify the solution and mint the NFT
@@ -215,10 +218,10 @@ Challenge address: `0x072d89c03662a4df6602c5c066593c0f11d319ac32fd6d9cee33b54fe8
   ```
   `hash_result = 0x046c2df8c2dde4795e032036fefb4d3962020d98f1fd36a1c2a60e656f5b7a9e`
 
-3. Guess the right number (`0x046c2df8c2dde4795e032036fefb4d3962020d98f1fd36a1c2a60e656f5b7a9e`):
+3. Deposit eth and guess the right number (`0x046c2df8c2dde4795e032036fefb4d3962020d98f1fd36a1c2a60e656f5b7a9e`):
 
    ```bash
-   starkli invoke 0x003f9a5fe97db08f27877dc2d363cd27ebd3f6380e0c3a6823162202b0f72b84 $(starkli selector guess) 0x046c2df8c2dde4795e032036fefb4d3962020d98f1fd36a1c2a60e656f5b7a9e
+   starkli invoke eth transfer 0x003f9a5fe97db08f27877dc2d363cd27ebd3f6380e0c3a6823162202b0f72b84 u256:10000000000000000 / 0x003f9a5fe97db08f27877dc2d363cd27ebd3f6380e0c3a6823162202b0f72b84 $(starkli selector guess) 0x046c2df8c2dde4795e032036fefb4d3962020d98f1fd36a1c2a60e656f5b7a9e
    ```
 
 4. Verify the solution and mint the NFT
