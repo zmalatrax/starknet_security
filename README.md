@@ -4,21 +4,21 @@ This repo contains my write-up for the different challenges available at https:/
 
 ## Recap
 
-| Challenge Number | Challenge Name | Solved  | Solved on-chain (SN_SEPOLIA) | Origin                   |
-| ---------------- | -------------- | ------- | ---------------------------- | ------------------------ |
-| 01               | [DEPLOY](#deploy)         | &#9745; | &#9745;                      | Capture The Ether (2022) |
-| 02               | [CALL ME](#call-me)        | &#9745; | &#9745;                      | Capture The Ether (2022) |
-| 03               | [NICKNAME](#nickname)       | &#9745; | &#9745;                      | Capture The Ether (2022) |
-| 04               | [GUESS](#guess)          | &#9745; | &#9745;                      | Capture The Ether (2022) |
-| 05               | [SECRET](#secret)         | &#9745; | &#9745;                      | Capture The Ether (2022) |
-| 06               | [RANDOM](#random)         | &#9745; | &#9745;                      | Capture The Ether (2022) |
-| 07               | [VTOKEN](#vtoken)         | &#9745; | &#9745;                      | Secureum A-Maze X (2022) |
-| 08               | [INSECURE DEX](#insecure-dex)   | &#9745; | &#9744;                      | Secureum A-Maze X (2022) |
-| 09               | [FAL1OUT](#fal1out)        | &#9745; | &#9745;                      | Ethernaut (2022)         |
-| 10               | [COINFLIP](#coinflip)       | &#9745; | &#9745;                      | Ethernaut (2022)         |
-| 11               | [TELEPHONE](#telephone)      | &#9745; | &#9745;                      | Ethernaut (2022)         |
-| 12               | [VAULT](#vault)          | &#9745; | &#9745;                      | Ethernaut (2022)         |
-| 13               | [NAUGHTY COIN](#naughty-coin)   | &#9745; | &#9745;                      | Ethernaut (2022)         |
+| Challenge Number | Challenge Name                    | Solved  | Solved on-chain (SN_SEPOLIA) | Origin                   |
+| ---------------- | --------------------------------- | ------- | ---------------------------- | ------------------------ |
+| 01               | [DEPLOY](#deploy)                 | &#9745; | &#9745;                      | Capture The Ether (2022) |
+| 02               | [CALL ME](#call-me)               | &#9745; | &#9745;                      | Capture The Ether (2022) |
+| 03               | [NICKNAME](#nickname)             | &#9745; | &#9745;                      | Capture The Ether (2022) |
+| 04               | [GUESS](#guess)                   | &#9745; | &#9745;                      | Capture The Ether (2022) |
+| 05               | [SECRET](#secret)                 | &#9745; | &#9745;                      | Capture The Ether (2022) |
+| 06               | [RANDOM](#random)                 | &#9745; | &#9745;                      | Capture The Ether (2022) |
+| 07               | [VTOKEN](#vtoken)                 | &#9745; | &#9745;                      | Secureum A-Maze X (2022) |
+| 08               | [INSECURE DEX](#insecure-dex)     | &#9745; | &#9744;                      | Secureum A-Maze X (2022) |
+| 09               | [FAL1OUT](#fal1out)               | &#9745; | &#9745;                      | Ethernaut (2022)         |
+| 10               | [COINFLIP](#coinflip)             | &#9745; | &#9745;                      | Ethernaut (2022)         |
+| 11               | [TELEPHONE](#telephone)           | &#9745; | &#9745;                      | Ethernaut (2022)         |
+| 12               | [VAULT](#vault)                   | &#9745; | &#9745;                      | Ethernaut (2022)         |
+| 13               | [NAUGHTY COIN](#naughty-coin)     | &#9745; | &#9745;                      | Ethernaut (2022)         |
 | 14               | [GOOD SAMARITAN](#good-samaritan) | &#9745; | &#9744;                      | Ethernaut (2022)         |
 
 ## Set up
@@ -109,6 +109,7 @@ starkli invoke 0x05141d769ce5dffd00a2cbd210c41a443360d68fd19a050c8cba22224d78691
 ```
 
 ### DEPLOY
+
 _Back to [recap](#recap)_
 
 Deploying the challenge solves the challenge.
@@ -129,6 +130,7 @@ Challenge address: `0x02e7e4bd84465b46525b05ba9709dc85f05bab7be04030fd3d5f704475
 3. Verify the solution and mint the NFT
 
 ### NICKNAME
+
 _Back to [recap](#recap)_
 
 We interact with the main contract to set a nickname, no need to deploy a challenge contract here.
@@ -145,6 +147,7 @@ starkli invoke 0x05141d769ce5dffd00a2cbd210c41a443360d68fd19a050c8cba22224d78691
 3. Check on the [leaderboard](https://starknet-security-challenges.app/leaderboard) that your nickname has been set.
 
 ### GUESS
+
 _Back to [recap](#recap)_
 
 We must guess a previously set number. Reading the constructor's source code is enough to find that number, 42. Or we could query the storage variable `answer` to get its value, as no storage is not publicly readable.
@@ -162,6 +165,7 @@ Challenge address: `0x003f9a5fe97db08f27877dc2d363cd27ebd3f6380e0c3a6823162202b0
 3. Verify the solution and mint the NFT
 
 ### SECRET
+
 _Back to [recap](#recap)_
 
 We must guess the number which yields the provided pedersen hash: `0x23c16a2a9adbcd4988f04bbc6bc6d90275cfc5a03fbe28a6a9a3070429acb96`
@@ -193,6 +197,7 @@ Challenge address: `0x4937083c68a02c79e98d907f56c59a2bbc455406381b6029cfd5f5fd07
 4. Verify the solution and mint the NFT
 
 ### RANDOM
+
 _Back to [recap](#recap)_
 
 A hash is computed from the block number and timestamp from which the challenge is deployed from, and we must guess it.
@@ -227,6 +232,7 @@ Challenge address: `0x072d89c03662a4df6602c5c066593c0f11d319ac32fd6d9cee33b54fe8
 4. Verify the solution and mint the NFT
 
 ### VTOKEN
+
 _Back to [recap](#recap)_
 
 :warning: Currently not working on Sepolia :warning:
@@ -278,6 +284,7 @@ starkli invoke 0x053dcd9f8332da68368d3be70fa2434704dda44265631571953413f8a48620e
 5. Verify the solution and mint the NFT
 
 ### INSECURE DEX
+
 _Back to [recap](#recap)_
 
 :warning: Currently not working on Sepolia :warning:
@@ -298,6 +305,7 @@ I tried writing an exploit contract in Cairo0, based on the challenge source cod
 Finishing the cairo 0 to cairo 2 migration of the challenge and then resolving it should be a better option...
 
 ### FAL1OUT
+
 _Back to [recap](#recap)_
 
 We must claim ownership of the deployed challenge.
@@ -317,6 +325,7 @@ Challenge address: 0x1098a949b19eb18fefac9e2bfc632666b2a9f852816680ff441ba30dae4
 3. Verify the solution and mint the NFT
 
 ### COINFLIP
+
 _Back to [recap](#recap)_
 
 We must win a coin flip game 6 consecutive times.
@@ -396,6 +405,7 @@ Contract deployed:
 ```
 
 ### TELEPHONE
+
 _Back to [recap](#recap)_
 
 We must claim ownership of the deployed challenge.
@@ -469,6 +479,7 @@ Contract deployed:
 ```
 
 ### VAULT
+
 _Back to [recap](#recap)_
 
 We need to unlock a vault 'protected' by a password, which is a storage variable.
@@ -489,6 +500,7 @@ Challenge address: 0x1212bfd3b7514a51733f4f3d78953cf46bbba1d4cdb12ef2563054042ac
 4. Verify the solution and mint the NFT
 
 ### NAUGHTY COIN
+
 _Back to [recap](#recap)_
 
 We have 100 $NTK which are supposed to be locked for 10 years (i.e non-transferrable).
@@ -508,6 +520,7 @@ Challenge address: 0x39303bb3e66588143f88beda1bcf9a4eb56a77829820ed4d55aec83ab12
 3. Verify the solution and mint the NFT
 
 ### GOOD SAMARITAN
+
 _Back to [recap](#recap)_
 
 The challenge contract allows anyone to call `request_donation(self: @ContractState)` which calls `donate10(self: @ContractState, dest_: ContractAddress)`, which transfers 10e18 tokens from a wallet contract if there is enough balance and the caller has implemented the function `fn notify(self: @TContractState, amount: u256) -> bool;`, returning true for a successful transfer of the requested amount.
@@ -515,6 +528,7 @@ The challenge contract allows anyone to call `request_donation(self: @ContractSt
 There is no restriction on number of calls to these functions, one can make calls to request_donation until the good samaritan's balance is 0. The good samaritan has $1_000_000 TKN, it requires 100_000 calls to `request_donation` if one request $10 TKN at a time. The number of calls required makes impossible to drain all coins in one transaction.
 
 In order to effectively transfer coins from the samaritan, the caller must implement the function `fn notify(self: @TContractState, amount: u256) -> bool;` from which the `transfer` function makes a transfer or not.
+
 - If the requested amount is superior to the current_balance of the samaritan, `transfer` returns `false`.
 - If the amount is sufficient, the transfer is successful or not based on the value returned from the `notify` external call.
 
