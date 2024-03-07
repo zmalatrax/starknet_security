@@ -19,7 +19,7 @@ This repo contains my write-up for the different challenges available at https:/
 | 11               | [TELEPHONE](#telephone)           | &#9745; | &#9745;                      | Ethernaut (2022)         |
 | 12               | [VAULT](#vault)                   | &#9745; | &#9745;                      | Ethernaut (2022)         |
 | 13               | [NAUGHTY COIN](#naughty-coin)     | &#9745; | &#9745;                      | Ethernaut (2022)         |
-| 14               | [GOOD SAMARITAN](#good-samaritan) | &#9745; | &#9744;                      | Ethernaut (2022)         |
+| 14               | [GOOD SAMARITAN](#good-samaritan) | &#9745; | &#9745;                      | Ethernaut (2022)         |
 
 ## Set up
 
